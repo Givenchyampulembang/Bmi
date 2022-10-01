@@ -71,8 +71,9 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
               ),
             ],
           )),
-          BmiCard(
-              child: Column(
+          Expanded(
+              child: BmiCard(
+                  child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -106,9 +107,8 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                 },
               ),
             ],
-          )),
-          // ignore: avoid_unnecessary_containers
-          Container(
+          ))),
+          Expanded(
               child: Row(
             children: [
               Expanded(
@@ -231,33 +231,29 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
               )),
             ],
           )),
-          // ignore: avoid_unnecessary_containers
-          Container(
-            child: GestureDetector(
-              onTap: () {
-                final bmiCalculator =
-                    BmiCalculator(height: height, weight: weight);
-                bmiCalculator.calculateBmi();
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return BmiResultScreen(
-                    bmi: bmiCalculator.bmi!,
-                  );
-                }));
-              },
-              child: Container(
-                height: 80,
-                color: const Color(0XFFEC3C66),
-                child: const Center(
-                    child: Text(
-                  "Ayok Hitung",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                )),
-              ),
+          GestureDetector(
+            onTap: () {
+              final bmiCalculator =
+                  BmiCalculator(height: height, weight: weight);
+              bmiCalculator.calculateBmi();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return BmiResultScreen(
+                  bmi: bmiCalculator.bmi!,
+                );
+              }));
+            },
+            child: Container(
+              height: 80,
+              color: const Color(0XFFEC3C66),
+              child: const Center(
+                  child: Text(
+                "Ayok Hitung",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              )),
             ),
           ),
         ],
