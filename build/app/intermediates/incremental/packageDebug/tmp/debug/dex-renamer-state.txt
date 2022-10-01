@@ -1,0 +1,4 @@
+#Sat Sep 24 15:11:38 JST 2022
+base.0=C\:\\Users\\GIVENCHY\\Desktop\\bmi\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
