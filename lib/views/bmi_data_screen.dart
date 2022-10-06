@@ -1,6 +1,7 @@
 import 'package:bmi/constants/constant.dart';
 import 'package:bmi/constants/helpers/bmi_calculator.dart';
 import 'package:bmi/views/bmi_result_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BmiDataScreen extends StatefulWidget {
@@ -25,6 +26,21 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
   //   return bmi;
   // }
 
+  List<Widget> generateList(star, end) {
+    List<Widget> weigths = [];
+    for (var i = star; i < end; i++) {
+      weigths.add(
+        Text(
+          "$i",
+          style: labelTextStyle!.copyWith(
+            fontSize: 20,
+          ),
+        ),
+      );
+    }
+    return weigths;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +50,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
       ),
       body: Column(
         children: [
-          Expanded(
-              child: Row(
+          Row(
             children: [
               Expanded(
                 child: GestureDetector(
@@ -70,14 +85,13 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                 ),
               ),
             ],
-          )),
-          Expanded(
-              child: BmiCard(
-                  child: Column(
+          ),
+          BmiCard(
+              child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Tinggi",
+                "HEIGHT",
                 style: labelTextStyle,
               ),
               const SizedBox(height: 12),
@@ -99,135 +113,73 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                 value: height.toDouble(),
                 min: 80,
                 max: 200,
-                thumbColor: Colors.white,
-                activeColor: Colors.red,
+                thumbColor: Colors.red,
+                activeColor: Colors.white,
                 onChanged: (value) {
                   height = value.toInt();
                   setState(() {});
                 },
               ),
             ],
-          ))),
-          Expanded(
+          )),
+          Container(
               child: Row(
             children: [
               Expanded(
-                  child: BmiCard(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Weight",
-                      style: labelTextStyle,
-                    ),
-                    Text(
-                      "$weight",
-                      style: numberTextStyle,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
+                  child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "WEIGTH",
+                    style: labelTextStyle,
+                  ),
+                  BmiCard(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        RawMaterialButton(
-                          onPressed: () {
-                            weight += 1;
-                            setState(() {});
-                          },
-                          elevation: 0,
-                          // ignore: sort_child_properties_last
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          shape: const CircleBorder(),
-                          fillColor: const Color(0xff212747),
-                          constraints: const BoxConstraints.tightFor(
-                              width: 56, height: 56),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        RawMaterialButton(
-                          onPressed: () {
-                            weight -= 1;
-                            setState(() {});
-                          },
-                          elevation: 0,
-                          // ignore: sort_child_properties_last
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.white,
-                          ),
-                          shape: const CircleBorder(),
-                          fillColor: const Color(0xff212747),
-                          constraints: const BoxConstraints.tightFor(
-                              width: 56, height: 56),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          child: CupertinoPicker(
+                              scrollController:
+                                  FixedExtentScrollController(initialItem: 30),
+                              itemExtent: 25,
+                              magnification: 2,
+                              useMagnifier: true,
+                              onSelectedItemChanged: (val) {
+                                //print(val);
+                                weight = val + 20;
+                              },
+                              children: generateList(20, 220)),
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               )),
               Expanded(
-                  child: BmiCard(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "AGE",
-                      style: labelTextStyle,
-                    ),
-                    Text(
-                      "$age",
-                      style: numberTextStyle,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
+                  child: Column(
+                children: [
+                  Text(
+                    "AGE",
+                    style: labelTextStyle,
+                  ),
+                  BmiCard(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        RawMaterialButton(
-                          onPressed: () {
-                            age += 1;
-                            setState(() {});
-                          },
-                          elevation: 0,
-                          // ignore: sort_child_properties_last
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          shape: const CircleBorder(),
-                          fillColor: const Color(0xff212747),
-                          constraints: const BoxConstraints.tightFor(
-                              width: 56, height: 56),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        RawMaterialButton(
-                          onPressed: () {
-                            age -= 1;
-                            setState(() {});
-                          },
-                          elevation: 0,
-                          // ignore: sort_child_properties_last
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.white,
-                          ),
-                          shape: const CircleBorder(),
-                          fillColor: const Color(0xff212747),
-                          constraints: const BoxConstraints.tightFor(
-                              width: 56, height: 56),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          child: CupertinoPicker(
+                              itemExtent: 25,
+                              magnification: 2,
+                              useMagnifier: true,
+                              onSelectedItemChanged: (val) {},
+                              children: generateList(1, 100)),
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               )),
             ],
           )),
@@ -243,8 +195,12 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
               }));
             },
             child: Container(
-              height: 80,
-              color: const Color(0XFFEC3C66),
+              height: 60,
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(0),
+                color: const Color(0XFFEC3C66),
+              ),
               child: const Center(
                   child: Text(
                 "Ayok Hitung",

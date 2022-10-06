@@ -11,58 +11,6 @@ class BmiResultScreen extends StatelessWidget {
 
   final double bmi;
 
-  // final BmiCalculator? bmiCalculator;
-
-  // String determineBmiCategory(double bmiValue) {
-  //   String category = "";
-  //   if (bmiValue < 16.0) {
-  //     UnderweightSevere;
-  //     category = UnderweightSevere;
-  //   } else if (bmiValue < 17) {
-  //     category = UnderweightModerate;
-  //   } else if (bmiValue < 18.5) {
-  //     category = UnderweightMild;
-  //   } else if (bmiValue < 25) {
-  //     category = normal;
-  //   } else if (bmiValue < 30) {
-  //     category = overweight;
-  //   } else if (bmiValue < 35) {
-  //     category = obeskelasI;
-  //   } else if (bmiValue < 40) {
-  //     category = obeskelasII;
-  //   } else if (bmiValue >= 40) {
-  //     category = obeskelasIII;
-  //   }
-
-  //   return category;
-  // }
-
-  // String getHealRiskDescription(String categoryName) {
-  //   String desc = "";
-  //   switch (categoryName) {
-  //     case UnderweightSevere:
-  //     case UnderweightModerate:
-  //     case UnderweightMild:
-  //       desc = " Possible nutritional deficiency and osteoporosis ";
-  //       break;
-  //     case normal:
-  //       desc = " Low risk (healthy range) ";
-  //       break;
-  //     case overweight:
-  //       desc =
-  //           " Modarete risk or developing heart disease, high blood pressure, stroke, diabetes mellitus.";
-  //       break;
-  //     case obeskelasI:
-  //     case obeskelasII:
-  //     case obeskelasIII:
-  //       desc =
-  //           " Modarete risk or developing heart disease, high blood pressure, stroke, diabetes mellitus. ";
-  //       break;
-  //     default:
-  //   }
-  //   return desc;
-  // }
-
   @override
   Widget build(BuildContext context) {
     final BmiCalculator bmiCalculator = BmiCalculator.fromBmiValue(bmi);
